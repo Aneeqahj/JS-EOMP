@@ -85,6 +85,7 @@ input {
   -webkit-text-stroke: 1px white;
   color: transparent;
   font-size: 70px;
+  letter-spacing: 3px;
 }
 
 .button {
