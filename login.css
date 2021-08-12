@@ -86,13 +86,6 @@ input {
   color: transparent;
   font-size: 70px;
 }
-.buttons {
-  font-size: 20px;
-  height: 50px;
-  width: 100%;
-  display: block;
-  margin-bottom: 10px;
-}
 
 .button {
   text-decoration: none;
@@ -118,5 +111,49 @@ input {
   }
   100% {
     background-position: 0 0;
+  }
+}
+
+/* Button */
+.buttons {
+  font-size: 25px;
+  height: 50px;
+  width: 100%;
+  display: block;
+  transition: 0.5s ease;
+  color: #00ebc4de;
+  margin-bottom: 10px;
+  background: transparent;
+  border: 1px solid #00ebc4de;
+}
+
+.buttons:hover {
+  background: linear-gradient(
+    45deg,
+    #fc0090,
+    #0000ff,
+    #00ff00,
+    #ff0000,
+    #ffff00,
+    #fc0090,
+    #0000ff,
+    #00ff00,
+    #ffff00
+  );
+  letter-spacing: 15px;
+  color: black;
+  background-size: 400% 400%;
+  animation: hover 15s ease infinite;
+}
+
+@keyframes hover {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 80%;
   }
 }
