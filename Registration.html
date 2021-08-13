@@ -11,14 +11,39 @@
     <div class="border">
       <div class="form">
         <h4 class="header">Complete the registration form please</h4>
-        <form class="register-form" action="./index.html">
-          <input class="inputs" type="text" placeholder="Full Name" />
-          <input class="inputs" type="text" placeholder="Username" />
-          <input class="inputs" type="text" placeholder="Email" />
-          <input class="inputs" type="text" placeholder="Password" />
-          <button class="buttons">Register</button>
+        <form class="register-form">
+          <input
+            class="inputs"
+            id="name"
+            name="full_name"
+            type="text"
+            placeholder="Full Name"
+          />
+          <input
+            class="inputs"
+            name="username"
+            id="username"
+            type="text"
+            placeholder="Username"
+          />
+          <input
+            class="inputs"
+            name="email"
+            id="email"
+            type="text"
+            placeholder="Email"
+          />
+          <input
+            class="inputs"
+            id="password"
+            name="password"
+            type="text"
+            placeholder="Password"
+          />
+          <button class="buttons" type="submit">Register</button>
         </form>
       </div>
     </div>
+    <script src="./main.js"></script>
   </body>
 </html>
