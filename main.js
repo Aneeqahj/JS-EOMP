@@ -1,61 +1,66 @@
-// Login
-let loginForm = document.querySelector(".login-form");
-let registerForm = document.querySelector(".register-form");
+let login_form = document.querySelector(".login-form");
+let reg_form = document.querySelector(".register-form");
 
-registerForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+if (login_form != null) {
+  login_form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  let full_name = document.querySelector("#name").value;
-  let username = document.querySelector("#username").value;
-  let email = document.querySelector("#email").value;
-  let password = document.querySelector("#password").value;
+    let user_details = {
+      username: document.querySelector(".username").value,
+      password: document.querySelector(".password").value,
+    };
 
-  register(full_name, email, username, password);
-});
-
-function login(username, password) {
-  console.log(username);
-  console.log(password);
-  fetch("https://fathomless-brook-37596.herokuapp.com/auth", {
-    method: "POST",
-    body: JSON.stringify({
-      username: `${username}`,
-      password: `${password}`,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data["access_token"]) {
+    fetch("https://fathomless-brook-37596.herokuapp.com/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user_details),
+    })
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data);
-        myStorage = window.localStorage;
-        myStorage.setItem("jwt-token", data["access_token"]);
-        myStorage.setItem("username", username);
-        myStorage.setItem("password", password);
-        window.location.href = "/products.html";
-      }
-    });
+
+        if (data["access_token"]) {
+          console.log(data);
+          localStorage.setItem("jwt_token", data["access_token"]);
+
+          window.location.href = "products.html";
+        }
+      });
+  });
 }
 
-// Registration
-function register(full_name, email, username, password) {
-  console.log(full_name, email, username, password);
-  fetch("https://fathomless-brook-37596.herokuapp.com/registration/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      full_name: full_name,
-      email: email,
-      username: username,
-      password: password,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
+if (reg_form != null) {
+  reg_form.addEventListener("submit", (e) => {
+    //  PREVENT THE DEFAULT ACTION OF THE FORM
+    e.preventDefault();
+
+    //  CREATE AN OBJECT CONTAINING ALL THE INPUTS VALUES
+    let new_user = {
+      full_name: document.querySelector("#name").value,
+      username: document.querySelector("#username").value,
+      email_address: document.querySelector("#email").value,
+      password: document.querySelector("#password").value,
+    };
+
+    console.log(new_user);
+
+    fetch("https://fathomless-brook-37596.herokuapp.com/registration/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(new_user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        // let current_user = res.current_user;
+        // localStorage.setItem("current_user", JSON.stringify(current_user));
+
+        window.location.href = "index.html";
+      });
+  });
 }

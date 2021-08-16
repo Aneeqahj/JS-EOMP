@@ -1,137 +1,167 @@
+let productContainer = document.querySelector(".product-container");
+let allBtn = document.querySelector(".categories.all");
+let footwearBtn = document.querySelector(".categories.footwear");
+let apparelBtn = document.querySelector(".categories.apparel");
+let accessoriesBtn = document.querySelector(".categories.accessories");
+let graffitiBtn = document.querySelector(".categories.graffiti");
+
 let productList = [
   {
+    id: "1",
     imgUrl: "./Images/d24-Nike-Air-Jordan-Point-Lane-CZ4166-006-side-1f3.jpg",
-    imgAlt: "p-1",
-    productCategory: "Men's Wear",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
+    imgAlt: "Sneaker",
+    productCategory: "Footwear",
+    productName: "Nike Jordan",
+    productPrice: "R2599.00",
+    productDescription: "Nike Air Jordan. Jordan Point Lane",
   },
   {
-    imgUrl: "./images/product-1.jpg",
-    imgAlt: "p-1",
-    productCategory: "Men's Wear",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
+    id: "2",
+    imgUrl:
+      "/Images/e8e-Patta-Basic-Hooded-Crew-Pale-Khaki-POC-BC-HS-016-front-deb.jpg",
+    imgAlt: "Apparel",
+    productCategory: "Apparel",
+    productName: "Patta",
+    productPrice: "R1699.00",
+    productDescription: "Basic nude Patta Hoodie",
   },
   {
-    imgUrl: "./images/product-1.jpg",
-    imgAlt: "p-1",
-    productCategory: "Men's Wear",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
-  },
-  {
-    imgUrl: "./images/product-1.jpg",
-    imgAlt: "p-1",
-    productCategory: "Women's Wear",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
-  },
-  {
-    imgUrl: "./images/product-1.jpg",
-    imgAlt: "p-1",
-    productCategory: "Women's Wear",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
-  },
-  {
-    imgUrl: "./images/product-1.jpg",
-    imgAlt: "p-1",
+    id: "3",
+    imgUrl: "./Images/8f9-Casio-G-Shock-GA-2000HC-3ADR-200M-ebe.jpg",
+    imgAlt: "Accessories",
     productCategory: "Accessories",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
+    productName: "Casio",
+    productPrice: "R3999.00",
+    productDescription: "Casio G-Shock 200M medium core",
   },
   {
-    imgUrl: "./images/product-1.jpg",
-    imgAlt: "p-1",
-    productCategory: "Accessories",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
-  },
-  {
-    imgUrl: "./images/product-1.jpg",
-    imgAlt: "p-1",
-    productCategory: "Accessories",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
-  },
-  {
-    imgUrl: "./images/product-1.jpg",
-    imgAlt: "p-1",
-    productCategory: "Women's Wear",
-    productName: "Grey Sweater",
-    productPrice: "R200",
-    productDescription: "Grey Woolen Sweater",
+    id: "4",
+    imgUrl: "/Images/mega-colors.jpg",
+    imgAlt: "Graffiti",
+    productCategory: "Graffiti",
+    productName: "Montana",
+    productPrice: "R95.00",
+    productDescription: "Montana Mega spray paint",
   },
 ];
 
 function productCard(card) {
+  console.log(card);
   let displayedCard = `
-    <div data-aos="zoom-in" data-aos-duration="3000" class="product-card">
-    <img class="product-image" src="${card.imgUrl}" alt="p-1">
-    <h1 class="category">
-        ${card.productCategory}
-    </h1>
-    <h2 class="name">
-        ${card.productName}
-    </h2>
-    <p class="description">
-        ${card.productDescription}
-    </p>
-    <button class="btn">Add to Cart</button>  
+  <div class="border">
+  <div class="product">
+  <img
+    class="image"
+    src="${card.imgUrl}"
+    alt="${card.imgAlt}"
+  />
+  <h4 class="name">${card.productName}</h4>
+  <h5 class="price">${card.productPrice}</h5>
+  <p class="description">${card.productDescription}</p>
+  <div class="button-group">
+    <button class="icons">
+      <i class="fas fa-shopping-cart"></i>
+    </button>
+    <button class="icons">
+      <a href="./editproducts.html"><i class="far fa-edit"></i></a>
+    </button>
+    <button onclick="deleteProduct(${card.id})" class="icons">
+      <i class="far fa-trash-alt"></i>
+    </button>
+  </div>
+</div>
 </div>
     `;
   return displayedCard;
 }
 
-allLink.addEventListener("click", () => {
+allBtn.addEventListener("click", () => {
   productContainer.innerHTML = "";
-  allList.forEach((card) => {
+  productList.forEach((card) => {
     productContainer.innerHTML += productCard(card);
   });
 });
 
-menLink.addEventListener("click", () => {
+footwearBtn.addEventListener("click", () => {
   productContainer.innerHTML = "";
-  let men = productList.filter((card) => {
-    return card.productCategory === "Men's Wear";
+  let footwear = productList.filter((card) => {
+    return card.productCategory === "Footwear";
   });
   productContainer.innerHTML = "";
-  men.forEach((card) => {
+  footwear.forEach((card) => {
     productContainer.innerHTML += productCard(card);
   });
 });
 
-womenLink.addEventListener("click", () => {
+apparelBtn.addEventListener("click", () => {
   productContainer.innerHTML = "";
-  let women = productList.filter((card) => {
-    return card.productCategory === "Women's Wear";
+  let apparel = productList.filter((card) => {
+    return card.productCategory === "Apparel";
   });
   productContainer.innerHTML = "";
-  women.forEach((card) => {
+  apparel.forEach((card) => {
     productContainer.innerHTML += productCard(card);
   });
 });
 
-accessoriesLink.addEventListener("click", () => {
+accessoriesBtn.addEventListener("click", () => {
   productContainer.innerHTML = "";
-  let women = productList.filter((card) => {
+  let accessories = productList.filter((card) => {
     return card.productCategory === "Accessories";
   });
   productContainer.innerHTML = "";
-  women.forEach((card) => {
+  accessories.forEach((card) => {
+    productContainer.innerHTML += productCard(card);
+  });
+});
+
+graffitiBtn.addEventListener("click", () => {
+  productContainer.innerHTML = "";
+  let graffiti = productList.filter((card) => {
+    return card.productCategory === "Graffiti";
+  });
+  productContainer.innerHTML = "";
+  graffiti.forEach((card) => {
     productContainer.innerHTML += productCard(card);
   });
 });
 
 productList.forEach((card) => {
+  console.log(card);
+  // productContainer = "";
   productContainer.innerHTML += productCard(card);
 });
+
+// Delete function
+
+function deleteProduct(index) {
+  console.log(index);
+  // http://127.0.0.1:5000/delete_product/${index}/
+  let delConfirm = confirm("Are you sure you want to delete this product?");
+  if (delConfirm) {
+    let token = localStorage.getItem("jwt_token");
+
+    console.log(token);
+    fetch(
+      `https://fathomless-brook-37596.herokuapp.com/delete_product/${index}/`,
+      {
+        headers: {
+          Authorization: `jwt ${token}`,
+        },
+      }
+    )
+      .then((respose) => respose.json())
+      .then((data) => console.log(data));
+    createCards();
+  }
+}
+
+function getProducts() {
+  fetch("https://fathomless-brook-37596.herokuapp.com/view/")
+    .then((respose) => respose.json())
+    .then((data) => {
+      console.log(data);
+    });
+}
+
+getProducts();

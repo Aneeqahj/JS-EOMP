@@ -61,10 +61,10 @@ body {
   padding: 10px;
 }
 
-.product-container .row {
+.product-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: row;
   width: 90vw;
   max-width: 1200px;
