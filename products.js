@@ -5,46 +5,6 @@ let apparelBtn = document.querySelector(".categories.apparel");
 let accessoriesBtn = document.querySelector(".categories.accessories");
 let graffitiBtn = document.querySelector(".categories.graffiti");
 
-let productList = [
-  {
-    id: "1",
-    imgUrl: "./Images/d24-Nike-Air-Jordan-Point-Lane-CZ4166-006-side-1f3.jpg",
-    imgAlt: "Sneaker",
-    productCategory: "Footwear",
-    productName: "Nike Jordan",
-    productPrice: "R2599.00",
-    productDescription: "Nike Air Jordan. Jordan Point Lane",
-  },
-  {
-    id: "2",
-    imgUrl:
-      "/Images/e8e-Patta-Basic-Hooded-Crew-Pale-Khaki-POC-BC-HS-016-front-deb.jpg",
-    imgAlt: "Apparel",
-    productCategory: "Apparel",
-    productName: "Patta",
-    productPrice: "R1699.00",
-    productDescription: "Basic nude Patta Hoodie",
-  },
-  {
-    id: "3",
-    imgUrl: "./Images/8f9-Casio-G-Shock-GA-2000HC-3ADR-200M-ebe.jpg",
-    imgAlt: "Accessories",
-    productCategory: "Accessories",
-    productName: "Casio",
-    productPrice: "R3999.00",
-    productDescription: "Casio G-Shock 200M medium core",
-  },
-  {
-    id: "4",
-    imgUrl: "/Images/mega-colors.jpg",
-    imgAlt: "Graffiti",
-    productCategory: "Graffiti",
-    productName: "Montana",
-    productPrice: "R95.00",
-    productDescription: "Montana Mega spray paint",
-  },
-];
-
 function productCard(card) {
   console.log(card);
   let displayedCard = `
@@ -52,20 +12,19 @@ function productCard(card) {
   <div class="product">
   <img
     class="image"
-    src="${card.imgUrl}"
-    alt="${card.imgAlt}"
+    src="./Images/d24-Nike-Air-Jordan-Point-Lane-CZ4166-006-side-1f3.jpg"
   />
-  <h4 class="name">${card.productName}</h4>
-  <h5 class="price">${card.productPrice}</h5>
-  <p class="description">${card.productDescription}</p>
+  <h4 class="name">${card[1]}</h4>
+  <h5 class="price">${card[2]}</h5>
+  <p class="description">${card[4]}</p>
   <div class="button-group">
-    <button class="icons">
+    <button class="icons" onclick="addToCart(${card[0]})">
       <i class="fas fa-shopping-cart"></i>
     </button>
-    <button class="icons">
+    <button class="icons" onclick="editProduct(${card[0]})">
       <a href="./editproducts.html"><i class="far fa-edit"></i></a>
     </button>
-    <button onclick="deleteProduct(${card.id})" class="icons">
+    <button onclick="deleteProduct(${card[0]})" class="icons">
       <i class="far fa-trash-alt"></i>
     </button>
   </div>
@@ -73,6 +32,12 @@ function productCard(card) {
 </div>
     `;
   return displayedCard;
+}
+
+function editProduct(id) {
+  localStorage.setItem("to edit", JSON.stringify(id));
+
+  window.location.href = "editproducts.html";
 }
 
 allBtn.addEventListener("click", () => {
@@ -126,11 +91,11 @@ graffitiBtn.addEventListener("click", () => {
   });
 });
 
-productList.forEach((card) => {
-  console.log(card);
-  // productContainer = "";
-  productContainer.innerHTML += productCard(card);
-});
+// productList.forEach((card) => {
+//   console.log(card);
+//   productContainer = "";
+//   productContainer.innerHTML += productCard(card);
+// });
 
 // Delete function
 
@@ -152,7 +117,7 @@ function deleteProduct(index) {
     )
       .then((respose) => respose.json())
       .then((data) => console.log(data));
-    createCards();
+    getProducts();
   }
 }
 
@@ -160,7 +125,14 @@ function getProducts() {
   fetch("https://fathomless-brook-37596.herokuapp.com/view/")
     .then((respose) => respose.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.data);
+      let products = data.data;
+
+      productContainer.innerHTML = "";
+
+      products.forEach(
+        (product) => (productContainer.innerHTML += productCard(product))
+      );
     });
 }
 

@@ -64,3 +64,35 @@ if (reg_form != null) {
       });
   });
 }
+
+function getCart() {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  let container = document.querySelector(".product-container");
+
+  console.log(cart);
+
+  cart.forEach((item) => {
+    console.log(item);
+    let detail = item[0];
+
+    container.innerHTML += `
+      <div class="border">
+        <div class="product">
+          <img
+            class="image"
+            src="./Images/e8e-Patta-Basic-Hooded-Crew-Pale-Khaki-POC-BC-HS-016-front-deb.jpg"
+            alt="Apparel"
+          />
+          <h4 class="name">${detail[0]}</h4>
+          <h5v class="price">R1699.00</h5v>
+          <p class="description">Basic nude Patta Hoodie</p>
+          <div class="button-group">
+            <button class="icons"><i class="far fa-trash-alt"></i></button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+getCart();

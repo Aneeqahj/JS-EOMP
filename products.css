@@ -118,6 +118,11 @@ body {
   transform: skewX(25deg);
   padding: 1em 2em;
 }
+
+.categories:hover {
+  background-color: #00ebc4de;
+}
+
 .categories > span {
   font-size: 20px;
   letter-spacing: 1px;
