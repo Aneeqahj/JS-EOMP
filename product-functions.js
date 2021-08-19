@@ -27,7 +27,7 @@ addForm.addEventListener("submit", (e) => {
 
 function addToCart(id) {
   fetch("https://fathomless-brook-37596.herokuapp.com/view/")
-    .then((respose) => respose.json())
+    .then((response) => response.json())
     .then((data) => {
       console.log(data.data);
       let products = data.data;

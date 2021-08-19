@@ -71,6 +71,8 @@ function getCart() {
 
   console.log(cart);
 
+  container.innerHTML = "";
+
   cart.forEach((item) => {
     console.log(item);
     let detail = item[0];
@@ -83,11 +85,11 @@ function getCart() {
             src="./Images/e8e-Patta-Basic-Hooded-Crew-Pale-Khaki-POC-BC-HS-016-front-deb.jpg"
             alt="Apparel"
           />
-          <h4 class="name">${detail[0]}</h4>
-          <h5v class="price">R1699.00</h5v>
-          <p class="description">Basic nude Patta Hoodie</p>
+          <h4 class="name">${detail[1]}</h4>
+          <h5v class="price">${detail[2]}</h5v>
+          <p class="description">${detail[3]}</p>
           <div class="button-group">
-            <button class="icons"><i class="far fa-trash-alt"></i></button>
+            <button onclick="removeFromCart(${detail[0]})") class="icons"><i class="far fa-trash-alt">remove</i></button>
           </div>
         </div>
       </div>
@@ -95,4 +97,25 @@ function getCart() {
   });
 }
 
+function removeFromCart(id) {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  let updatedCart = cart.filter((item) => item[0][0] != id);
+
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+  getCart();
+  getTotal();
+}
+
 getCart();
+
+function getTotal() {
+  let total = 0;
+  let cart = JSON.parse(localStorage.getItem("cart"));
+
+  cart.forEach(
+    (item) => (total += parseInt(item[0][2].substring(1, item[0][2].length)))
+  );
+
+  document.querySelector(".total").innerHTML = "Your total is: R" + total;
+}
