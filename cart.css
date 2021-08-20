@@ -357,3 +357,7 @@ i {
   background-size: 400% 400%;
   animation: hover 15s ease infinite;
 }
+
+.users {
+  color: #fff;
+}

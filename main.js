@@ -57,10 +57,10 @@ if (reg_form != null) {
       .then((data) => {
         console.log(data);
 
-        // let current_user = res.current_user;
-        // localStorage.setItem("current_user", JSON.stringify(current_user));
+        let user = data.user;
+        localStorage.setItem("user", JSON.stringify(user));
 
-        window.location.href = "index.html";
+        // window.location.href = "index.html";
       });
   });
 }
