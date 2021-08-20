@@ -1,3 +1,5 @@
+//  Login: Wolf Password: food - For Jason (Still having the cors issue)
+
 let login_form = document.querySelector(".login-form");
 let reg_form = document.querySelector(".register-form");
 
